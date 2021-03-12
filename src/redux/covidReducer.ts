@@ -1,4 +1,4 @@
-import {GET_COVID} from "./type"
+import {GET_COVID, DataCovidWorld, GET_COVID_GLOBAL} from "./type"
 
 interface CovidState {
     positif: number,
@@ -9,7 +9,8 @@ interface CovidState {
 }
 
 export interface StateDefault {
-    covid1 : CovidState 
+    covid1?: CovidState | any 
+    covidWorld?: DataCovidWorld[]
 }
 
 
@@ -21,10 +22,14 @@ const intialState : StateDefault = {
         sembuh: 0,
         meninggal: 0,
         lastUpdate: ""
-    }
+    },
+    covidWorld:[]
 }
 
-type Action = {type: "GET_COVID", payload : CovidState}  
+type covid1Action = {type: "GET_COVID", payload : CovidState}
+type covidWorldAction = {type: "GET_COVID_GLOBAL", payload: DataCovidWorld[]}
+
+type Action = covid1Action | covidWorldAction
 
 
 export const covidReducer = (state = intialState, action: Action) : StateDefault => {
@@ -32,7 +37,11 @@ export const covidReducer = (state = intialState, action: Action) : StateDefault
         case GET_COVID: {
             return {covid1: action.payload} 
         }
+        case GET_COVID_GLOBAL: {
+            return {covidWorld: action.payload}
+        }
         default :
             return state
     }
 }
+

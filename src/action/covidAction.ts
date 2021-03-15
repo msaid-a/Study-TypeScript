@@ -1,4 +1,4 @@
-import {GET_COVID, DataCovidWorld, GET_COVID_GLOBAL} from '../redux/type'
+import {GET_COVID, DataCovidWorld, GET_COVID_GLOBAL, DetailDataCovid, GET_DETAIL_COVID} from '../redux/type'
 import axios from 'axios'
 import {ThunkAction} from 'redux-thunk'
 
@@ -20,6 +20,11 @@ interface CovidAction {
 interface CovidGlobalAction {
     type : typeof GET_COVID_GLOBAL,
     payload : DataCovidWorld
+}
+
+interface CovidDetailAction {
+    type : typeof GET_DETAIL_COVID,
+    payload : DetailDataCovid
 }
 
 export const getData =  () : ThunkAction<void,{},{}, CovidAction>=>  {
@@ -52,4 +57,17 @@ export const getDataGlobal =  () : ThunkAction<void,{},{}, CovidGlobalAction>=> 
     }
 }
 
+export const getDetailCovid =  () : ThunkAction<void,{},{}, CovidDetailAction>=>  {
+    return async dispatch => {
+        try {
+            const res = await axios.get<DetailDataCovid>('https://apicovid19indonesia-v2.vercel.app/api/indonesia/more')
+            dispatch({
+                type: GET_DETAIL_COVID,
+                payload: res.data
+            })
+        } catch (error) {
+            console.log(error)
+        }
 
+    }
+}

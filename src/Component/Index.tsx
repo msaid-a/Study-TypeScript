@@ -5,6 +5,9 @@ import {StateDefault} from '../redux/covidReducer'
 import {getData, getDataGlobal, getDetailCovid} from '../action/covidAction'
 import {Button, Form, Input, Icon, Checkbox} from 'antd'
 import { FormComponentProps } from "antd/lib/form";
+import Headers from './Headers'
+import Data from './Data'
+import ProvinceData from './ProvinceData'
 
 
 type props = {
@@ -12,11 +15,6 @@ type props = {
     form: FormComponentProps
 }
 
-interface testObj {
-    name : string,
-    age : number,
-    live: boolean
-}
 
 
 const Training: React.FC<props & FormComponentProps> = ({form, tittle}) => {
@@ -25,28 +23,12 @@ const Training: React.FC<props & FormComponentProps> = ({form, tittle}) => {
     const covidDataDetail = useSelector<StateDefault>((state) => state)
 
 
-    const dispatch = useDispatch()
+    
 
-
-    useEffect(() => {
-       
-        dispatch(getData())
-        dispatch(getDataGlobal())
-        dispatch(getDetailCovid())
-    }, [])
-
-    console.log(covidDataGlobal, 'zxczxc')
-    console.log(covidDataDetail, 'zxczxc2')
     return (
-        <div style={{margin: 20, width: 280 }}>
-        
-            {/* {covidData} */}
-            <p>Positif : {covidData?.positif}</p>
-            <p>Semuh : {covidData?.sembuh}</p>
-            <p>Dirawat : {covidData?.dirawat}</p>
-            <p>Meninggal : {covidData?.meninggal}</p>
-            <p>Terakhir Update : {covidData?.lastUpdate}</p>
-
+        <div>
+            <Data />
+            <ProvinceData />
         </div>
     )
 }

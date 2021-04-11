@@ -12,6 +12,8 @@
     "@types/react-dom": "^17.0.1",
     "antd": "^3.16.3",
     "axios": "^0.21.1",
+    "moment": "^2.29.1",
+    "node-sass": "^5.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-redux": "^7.2.2",
@@ -25,7 +27,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "compile:sass": "node-sass src/static/styles/main.scss src/static/styles/style.css -w --output-style compressed"
   },
   "eslintConfig": {
     "extends": [

@@ -16,19 +16,19 @@
 
 
 .background-data {
-    background-image: url('../img/background.jpg');
+    background-image: url('../img/header.jpg');
     height: 100vh;
-    background-size: 100%;
+    background-size: 125%;
     padding-top: 45vh;
     padding-left: 2%;
 }
 @media screen and (max-width: 1369px) {
     .data-table {
         background: rgb(232, 13, 13);
-        font-size: 20px;
+        font-size: 18px;
         border-radius: 10px;
         color: white;
-        width: 650px;
+        width: 590px;
         th {
             padding-top: 20px;
             padding-left: 20px;
